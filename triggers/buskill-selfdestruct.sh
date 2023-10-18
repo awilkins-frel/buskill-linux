@@ -18,8 +18,6 @@
 # SETTINGS #
 ############
 
-BUSKILL_LOCK='/usr/local/bin/buskill-lock.sh'
-[ -f ${BUSKILL_LOCK} ] || echo "ERROR: Unable to find buskill-lock.sh"
 
 CRYPTSETUP=`which cryptsetup` || echo "ERROR: Unable to find cryptsetup"
 LS=`which ls` || echo "ERROR: Unable to find ls"
@@ -44,12 +42,6 @@ nohup sleep 60 && echo o > /proc/sysrq-trigger &
 nohup sleep 61 && shutdown -h now &
 nohup sleep 62 && poweroff --force --no-sync &
 
-###############
-# LOCK SCREEN #
-###############
-
-# first action: lock the screen!
-${BUSKILL_LOCK} &
 
 #####################
 # WIPE LUKS VOLUMES #
