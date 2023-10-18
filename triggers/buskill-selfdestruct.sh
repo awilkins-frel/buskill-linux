@@ -7,8 +7,7 @@
 #          For more info, see: https://buskill.in/
 # WARNING: THIS IS EXPERIMENTAL SOFTWARE THAT IS DESIGNED TO CAUSE PERMANENT,
 #          COMPLETE AND IRREVERSIBLE DATA LOSS!
-# Note   : This script will *not* execute unless it's passed the '--yes'
-#          argument. Be sure to test this trigger before depending on it!
+# Note   : This script will  exicute - THE SAFETY CHECK HAS BEEN REMOVED!!!!!!!
 # Authors: Michael Altfield <michael@buskill.in>
 # Created: 2020-03-11
 # Updated: 2020-03-11
@@ -32,31 +31,6 @@ HEAD=`which head` || echo "ERROR: Unable to find head"
 LSBLK=`which lsblk` || echo "ERROR: Unable to find lsblk"
 OD=`which od` || echo "ERROR: Unable to find od"
 
-##############
-# ROOT CHECK #
-##############
-
-# re-run as root
-if [[ $EUID -ne 0 ]]; then
-    exec sudo /bin/bash "$0" "$@"
-fi
-
-###########
-# CONFIRM #
-###########
-
-# for safety, exit if this script is executed without a '--yes' argument
-${ECHO} "${@}" | ${GREP} '\--yes' &> /dev/null
-if [ $? -ne 0 ]; then
-	${ECHO} "WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING"
-	${ECHO} "================================================================================"
-	${ECHO} "WARNING: THIS IS EXPERIMENTAL SOFTWARE THAT IS DESIGNED TO CAUSE PERMANENT,  COMPLETE AND IRREVERSIBLE DATA LOSS!"
-	${ECHO} "================================================================================"
-	${ECHO} "WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING"
-	${ECHO}
-	${ECHO} "cowardly refusing to execute without the '--yes' argument for your protection. If really you want to proceed with damaging your system, retry with the '--yes' argument"
-	exit 1
-fi
 
 ###########################
 # (DELAYED) HARD SHUTDOWN #
